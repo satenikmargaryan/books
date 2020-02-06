@@ -1,15 +1,15 @@
-<form>
+<form (ngSubmit)="submitForm()">
   <div class="field">
     <label class="label">Name</label>
-    <input type="text" name="name" class="input" />
+    <input type="text" name="name" class="input" [(ngModel)]="name" />
   </div>
   <div class="field">
     <label class="label">Email</label>
-    <input type="email" name="email" class="input" />
+    <input type="email" name="email" class="input" [(ngModel)]="email" />
   </div>
   <div class="field">
     <label class="label">Message</label>
-    <textarea name="message" class="textarea"></textarea>
+    <textarea name="message" class="textarea" [(ngModel)]="message"></textarea>
   </div>
   <button type="submit" class="button">Send!</button>
 </form>
