@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 
+import { ApiService } from "../api.service";
+
 @Component({
   selector: "app-contact",
   templateUrl: "./contact.component.html",
@@ -10,11 +12,21 @@ export class ContactComponent implements OnInit {
   email: string;
   message: string;
 
-  constructor() {}
+  constructor(private http: ApiService) {}
 
   ngOnInit() {}
 
   submitForm() {
-    console.log("Heelo");
+    const options = {
+      name: this.name,
+      email: this.email,
+      message: this.message
+    };
+
+    this.http
+      .sendEmail("http://localhost:3001/api/sendmail", options)
+      .then(data => {
+        console.log("Data", data);
+      });
   }
 }
