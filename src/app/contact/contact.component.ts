@@ -25,7 +25,7 @@ export class ContactComponent implements OnInit {
 
     this.http
       .sendEmail("http://localhost:3001/api/sendmail", options)
-      .then(data => {
+      .subscribe(data => {
         console.log("Data", data);
       });
   }

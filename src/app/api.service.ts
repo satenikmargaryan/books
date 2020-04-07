@@ -8,16 +8,20 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   getUsers(url) {
-    return fetch(url);
+    return this.http.get(url);
   }
 
   sendEmail(url, data) {
-    return fetch(url, {
+    return this.http.post(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8"
       },
       body: JSON.stringify(data)
     });
+  }
+
+  getPosts(url) {
+    return this.http.get(url);
   }
 }

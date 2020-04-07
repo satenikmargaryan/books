@@ -1,13 +1,20 @@
 const express = require("express");
 const http = require("http");
-const path = require("path");
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const mongoose = require("mongoose");
+
+const post = require("./routes/post.routes");
 
 const app = express();
 
 const port = process.env.port || 3001;
+
+let dev_db_url = "";
+const mongoDB = process.env.MONGODB_URI || dev_db_url;
+mongoose.connect(mongoDB);
+mongoose.Promise = global.Promise;
 
 app.use(cors({ origin: "*" }));
 
@@ -16,13 +23,7 @@ app.use(bodyParser.json());
 
 app.use(express.static(__dirname + "/dist/books"));
 
-app.get("/api/users", function(req, res) {
-  var user_id = "gy";
-  var token = "sdf";
-  var geo = "sdf";
-
-  res.send(user_id + " " + token + " " + geo);
-});
+app.use("/api/posts", post);
 
 app.post("/api/sendmail", (req, res) => {
   // create reusable transporter object using the default SMTP transport
@@ -30,18 +31,18 @@ app.post("/api/sendmail", (req, res) => {
     service: "gmail",
     auth: {
       user: "satenikmargaryanm@gmail.com", // generated ethereal user
-      pass: "****" // generated ethereal password
+      pass: "****", // generated ethereal password
     },
     tls: {
-      rejectUnauthorized: false
-    }
+      rejectUnauthorized: false,
+    },
   });
 
   transporter.sendMail({
     from: "satenikmargaryanm@gmail.com", // sender address
     to: "satenik@mailinator.com, satenikmargaryanm@gmail.com", // list of receivers
     subject: "Hello ✔", // Subject line
-    text: "Hello world?" // plain text body
+    text: "Hello world?", // plain text body
   });
 });
 
