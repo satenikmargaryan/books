@@ -13,8 +13,13 @@ const port = process.env.port || 3001;
 
 let dev_db_url = "";
 const mongoDB = process.env.MONGODB_URI || dev_db_url;
-mongoose.connect(mongoDB);
-mongoose.Promise = global.Promise;
+
+mongoose.connect(mongoDB, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+});
 
 app.use(cors({ origin: "*" }));
 
