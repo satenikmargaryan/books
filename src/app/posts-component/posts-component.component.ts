@@ -10,10 +10,8 @@ export class PostsComponent implements OnInit {
   constructor(private http: ApiService) {}
 
   ngOnInit() {
-    this.http
-      .getPosts("http://localhost:3001/api/posts/5e8b47985a3152340439731d")
-      .subscribe((data) => {
-        console.log("data", data);
-      });
+    this.http.getPosts("http://localhost:3001/api/posts").subscribe((data) => {
+      console.log("data", data);
+    });
   }
 }

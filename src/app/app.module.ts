@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from "./app.component";
@@ -10,6 +10,8 @@ import { HomeComponent } from "./home/home.component";
 import { ContactComponent } from "./contact/contact.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { PostsComponent } from "./posts-component/posts-component.component";
+import { CreatePostComponent } from "./create-post/create-post.component";
+import { EditPostComponent } from "./edit-post/edit-post.component";
 
 @NgModule({
   declarations: [
@@ -18,10 +20,18 @@ import { PostsComponent } from "./posts-component/posts-component.component";
     FooterComponent,
     HomeComponent,
     ContactComponent,
-    PostsComponent
+    PostsComponent,
+    CreatePostComponent,
+    EditPostComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
