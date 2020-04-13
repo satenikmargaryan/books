@@ -34,7 +34,7 @@ exports.post_create = (req, res) => {
 };
 
 exports.get_posts = (req, res) => {
-  Post.find({}, (err, result) => {
-    res.send(JSON.stringify(result));
+  Post.find((err, result) => {
+    res.send(result);
   });
 };
